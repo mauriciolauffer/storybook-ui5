@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "types": ["webpack-env"]
+    "types": ["@openui5/ts-types"]
   },
   "include": ["src/**/*"]
 }

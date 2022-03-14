@@ -1,6 +1,8 @@
 module.exports = {
-  stories: [`../stories/*.stories.*`],
-  addons: [
-    "@storybook/addon-essentials"
-  ]
+  stories: ['../stories'],
+  staticDirs: ['../components'],
+  framework: 'storybook-ui5',
+  features: {
+    postcss: false,
+  }
 };
