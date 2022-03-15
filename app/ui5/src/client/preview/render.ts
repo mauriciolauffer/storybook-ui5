@@ -5,38 +5,43 @@ import { RenderContext } from '@storybook/store';
 import { Ui5Framework } from './types-6-0';
 
 import Control from 'sap/ui/core/Control';
-import Controller from 'sap/ui/core/mvc/Controller';
 import XMLView from 'sap/ui/core/mvc/XMLView';
 
 const { sap, Node } = global;
-
 
 function renderUi5ElementFromObject(element: Control) {
   element.placeAt("root", "only");
 }
 
 function renderUi5ElementFromXmlString(element: string) {
-  sap.ui.require(["sap/ui/core/mvc/XMLView", "sap/ui/core/mvc/Controller"], async function(XMLView: XMLView, Ui5Controller: Controller) {
-    const Controller = Ui5Controller.extend("storybook-ui5-controller", {});
-    const fragment = await XMLView.create({
-      definition: `<mvc:View xmlns:mvc="sap.ui.core.mvc">${element}</mvc:View>`,
-      controller: new Controller()
+  sap.ui.require(["sap/ui/core/mvc/XMLView", "sap/ui/core/mvc/Controller"], async function(XMLView: XMLView) {
+    const view = await XMLView.create({
+      definition: `<mvc:View xmlns:mvc="sap.ui.core.mvc">${element}</mvc:View>`
     });
-    fragment.placeAt("root", "only");
+    view.placeAt("root", "only");
   });
 }
 
 export function renderToDOM(
-  { storyFn, kind, name, showMain, showError }: RenderContext<Ui5Framework>,
+  { storyFn, kind, name, showMain, showError, forceRemount }: RenderContext<Ui5Framework>,
   domElement: HTMLElement
 ) {
   const element: string | Control = storyFn();
   showMain();
+  while (domElement.firstChild) {
+    domElement.removeChild(domElement.firstChild);
+  }
   if (typeof element === 'string') {
     renderUi5ElementFromXmlString(element);
     simulatePageLoad(domElement);
+  } else if (element instanceof Node) {
+    // Don't re-mount the element if it didn't change and neither did the story
+    if (domElement.firstChild === element && forceRemount === false) {
+      return;
+    }
+    domElement.appendChild(element);
+    simulateDOMContentLoaded();
   } else if (typeof element === "object" && element.placeAt) {
-    domElement.innerHTML = '';
     renderUi5ElementFromObject(element);
     simulateDOMContentLoaded();
   } else {

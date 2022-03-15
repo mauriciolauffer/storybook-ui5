@@ -31,4 +31,8 @@ UI5ObjectWithEvent.args = {
   text: "press event"
 };
 
-
+export const GenericHTMLButton = () => {
+  const btn = document.createElement('button');
+  btn.textContent = 'Generic HTML Button';
+  return btn;
+};
