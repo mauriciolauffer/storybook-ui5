@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "types": ["@openui5/ts-types"]
+    "types": ["openui5"]
   },
   "include": ["src/**/*"]
 }

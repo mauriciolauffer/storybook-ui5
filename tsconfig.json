@@ -6,14 +6,15 @@
     "noImplicitAny": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "jsx": "react",
-    "module": "commonjs",
+    "module": "CommonJS",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "target": "es5",
-    "lib": ["es2017", "dom"]
+    "isolatedModules": true,
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM"],
+    "types": ["openui5"]
   },
   "exclude": [
     "**/dist",
