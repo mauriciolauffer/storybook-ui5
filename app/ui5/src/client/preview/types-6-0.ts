@@ -1,11 +1,11 @@
 import { Args, ComponentAnnotations, StoryAnnotations, AnnotatedStoryFn } from '@storybook/csf';
-
+import Control from 'sap/ui/core/Control';
 import { StoryFnUi5ReturnType } from './types';
 
 export type { Args, ArgTypes, Parameters, StoryContext } from '@storybook/addons';
 
 export type Ui5Framework = {
-  component: HTMLElement;
+  component: string | Control;
   storyResult: StoryFnUi5ReturnType;
 };
 

@@ -1,10 +1,9 @@
+// Load control sync
+const RevButton = sap.ui.requireSync('custom/ReverseButton');
+
 export default {
   title: 'ReverseButton',
-  argTypes: {
-    text: {
-      control: 'text'
-    }
-  }
+  component: RevButton
 };
 
 const TemplateXmlString = (args) => `<ReverseButton xmlns="custom" text="${args.text}" />`;
@@ -13,7 +12,6 @@ XmlString.args = {
   text: "Wait, this is weird!"
 }
 
-const RevButton = sap.ui.requireSync('custom/ReverseButton'); // Load control sync
 const TemplateObject = (args) => new RevButton({text: args.text});
 export const UI5Object = TemplateObject.bind({});
 UI5Object.args = {
