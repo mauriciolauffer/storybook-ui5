@@ -5,7 +5,7 @@ import { StoryFnUi5ReturnType } from './types';
 export type { Args, ArgTypes, Parameters, StoryContext } from '@storybook/addons';
 
 export type Ui5Framework = {
-  component: string | Control;
+  component: string | Control | Node;
   storyResult: StoryFnUi5ReturnType;
 };
 

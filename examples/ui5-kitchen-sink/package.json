@@ -12,5 +12,8 @@
   "license": "MIT",
   "devDependencies": {
     "storybook-ui5": "file:../../app/ui5"
+  },
+  "resolutions": {
+    "@storybook/ui5/webpack": "^5"
   }
 }

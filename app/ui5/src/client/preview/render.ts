@@ -14,8 +14,8 @@ function renderUi5ElementFromObject(element: Control) {
 }
 
 function renderUi5ElementFromXmlString(element: string) {
-  sap.ui.require(["sap/ui/core/mvc/XMLView", "sap/ui/core/mvc/Controller"], async function(XMLView: XMLView) {
-    const view = await XMLView.create({
+  sap.ui.require(["sap/ui/core/mvc/XMLView"], async function(XMLViewObj: XMLView) {
+    const view = await XMLViewObj.create({
       definition: `<mvc:View xmlns:mvc="sap.ui.core.mvc">${element}</mvc:View>`
     });
     view.placeAt("root", "only");
@@ -26,7 +26,7 @@ export function renderToDOM(
   { storyFn, kind, name, showMain, showError, forceRemount }: RenderContext<Ui5Framework>,
   domElement: HTMLElement
 ) {
-  const element: string | Control = storyFn();
+  const element: string | Control | Node = storyFn();
   showMain();
   while (domElement.firstChild) {
     domElement.removeChild(domElement.firstChild);

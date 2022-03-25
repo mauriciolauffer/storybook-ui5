@@ -4,5 +4,8 @@ module.exports = {
   framework: 'storybook-ui5',
   features: {
     postcss: false,
+  },
+  core: {
+    builder: 'webpack5',
   }
 };

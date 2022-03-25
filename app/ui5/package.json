@@ -47,6 +47,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/openui5": "^1.99.0"
+    "@types/openui5": "^1.100.0"
   }
 }
